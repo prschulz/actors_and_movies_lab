@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :movies
-  resources :actors
+
+  resources :movies do
+    resources :comments, only:[:create,:destroy]
+  end
+  resources :actors do
+    resources :comments, only:[:create,:destroy]
+  end
 
   post '/movies/:id/actors/new' => 'movies#add_actor', as: :add_actor
   delete 'movies/:id/actors/:actor_id' => 'movies#remove_actor', as: :remove_actor
