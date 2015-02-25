@@ -6,7 +6,6 @@ class ActorsController < ApplicationController
   end
 
   def create
-    binding.pry
     Actor.create actor_params
     redirect_to actors_path
   end
