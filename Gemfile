@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'simple_form'
+gem 'pry-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
@@ -25,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'       
+  gem 'spring'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
