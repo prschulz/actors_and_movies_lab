@@ -1,0 +1,11 @@
+<p class="lead">What are people saying about this actor?</p>
+<% comments.each do |c| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= c.content %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to "Delete comment", [commentable, c], :method => :delete %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,7 @@
+<%= simple_form_for([commentable,Comment.new], html: {class: 'form-group' }) do |f| %>
+  <%= f.label :content %>
+  <br>
+  <%= f.text_area :content %>
+  <br>
+  <%= f.submit %>
+<% end %>
