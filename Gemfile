@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'uploadcare-rails', "~> 1.0"
 gem 'simple_form'
 gem 'pry-rails'
 
