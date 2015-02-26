@@ -19,6 +19,7 @@ class ActorsController < ApplicationController
 
   def show
     @movies = Movie.all - @actor.movies
+    @comments = @actor.comments.order(created_at: :asc)
   end
 
   def update

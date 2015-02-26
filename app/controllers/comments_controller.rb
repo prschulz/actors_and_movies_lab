@@ -5,15 +5,16 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
-      flash[:notice] = "You always got comments..."
+      flash[:success] = "You always got comments..."
     else
       flash[:alert] = "You cannot comment on this because Pete sucks at coding"
     end
     redirect_to :back
   end
 
-  def delete
-    @comment = comment_params
+  def destroy
+    @comment = Comment.find(params[:id])
+    @commentable = find_commentable
     @commentable.comments.delete @comment
     redirect_to :back
   end

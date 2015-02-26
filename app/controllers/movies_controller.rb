@@ -1,12 +1,12 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:edit, :show, :destroy, :add_actor, :remove_actor]
-  
+
   def index
     @movies = Movie.all
   end
 
   def create
-    Movie.create movie_params 
+    Movie.create movie_params
     redirect_to movies_path
   end
 
@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
 
   def show
     @actors = Actor.all - @movie.actors
+    @comments = @movie.comments.order(created_at: :asc)
   end
 
   def update
@@ -41,7 +42,7 @@ class MoviesController < ApplicationController
 
   def remove_actor
     @movie.actors.delete(Actor.find(params[:actor_id]))
-    redirect_to @movie 
+    redirect_to @movie
   end
 
   private
