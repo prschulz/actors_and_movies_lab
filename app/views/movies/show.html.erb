@@ -1,27 +1,36 @@
-<h1><%= @movie.title %></h1>
+<br>
+<div class="jumbotron">
+  <h1><%= @movie.title %></h1>
 
-<p><%= @movie.year %></p>
+  <p><%= @movie.year %></p>
 
-<div class="black-box">
-  <h2>Actors</h2>
+
+  <h3>Actors</h3>
   <ul>
     <% @movie.actors.each do |actor| %>
     <li>
-      <%= link_to actor.name, actor %>
-      <%= button_to "X", remove_actor_path(@movie, actor), :method => :delete %>
+      <%= link_to actor.name, actor %> -
+      <%= button_to "X", remove_actor_path(@movie, actor), class:'btn btn-xs btn-danger', :method => :delete %>
     </li>
     <% end %>
   </ul>
   <% unless @actors.empty? %>
-    <%= form_tag add_actor_path(@movie) do %>
-      <%= collection_select :actor, :id, @actors, :id, :name %>
-      <%= submit_tag "Add" %>
+    <%= form_tag add_actor_path(@movie), class:'form-horizontal' do %>
+      <div class="form-group">
+        <%= collection_select :actor, :id, @actors, :id, :name %>
+        <%= submit_tag "Add", class:'btn btn-xs btn-success' %>
+      </div>
     <% end %>
   <% end %>
+
+  <%= link_to "Edit", edit_movie_path(@movie) %><br>
+  <%= button_to "Delete", movie_path(@movie), class:'btn btn-xs btn-danger',   :method => :delete %>
+  <br><br>
+
+  <%= link_to "Back to movies", movies_path %>
 </div>
 
-<%= link_to "Edit", edit_movie_path(@movie) %>
-<%= button_to "Delete", movie_path(@movie), :method => :delete %>
-<br><br>
 
-<%= link_to "Back to movies", movies_path %>
+
+<%= render partial: 'partials/comments', locals: {comments: @comments, commentable: @movie} %>
+<%= render partial: 'partials/add_comments', locals: {comments: @comments, commentable: @movie}%>
